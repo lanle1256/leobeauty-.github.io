@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quản trị sản phẩm - LEO Beauty</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .admin-container { max-width: 900px; margin: 32px auto; background: #fff; border-radius: 14px; box-shadow: 0 2px 12px #e6f2ea; padding: 32px; }
+    .admin-title { font-size: 1.5rem; font-weight: 700; color: #064124; margin-bottom: 24px; }
+    .admin-form label { display: block; margin-bottom: 12px; font-weight: 500; }
+    .admin-form input, .admin-form textarea { width: 100%; padding: 8px; margin-top: 4px; border-radius: 6px; border: 1px solid #e6f2ea; background: #f8fdfb; }
+    .admin-form button { margin-top: 18px; }
+    .admin-table { width: 100%; border-collapse: collapse; margin-top: 32px; }
+    .admin-table th, .admin-table td { padding: 10px 8px; border-bottom: 1px solid #e6f2ea; text-align: center; }
+    .admin-table th { background: #f8fdfb; color: #064124; font-weight: 700; }
+    .admin-table img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
+    .admin-actions button { margin: 0 4px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">🌿 LEO Beauty</a>
+      <nav class="main-nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="products.html">Sản phẩm</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="admin-container">
+      <div class="admin-title">Quản lý sản phẩm</div>
+      <form id="admin-form" class="admin-form">
+        <label>Tên sản phẩm
+          <input type="text" id="product-name" required />
+        </label>
+        <label>Giá (VNĐ)
+          <input type="number" id="product-price" required min="0" />
+        </label>
+        <label>Ảnh sản phẩm
+          <input type="file" id="product-image-file" accept="image/*" />
+          <input type="hidden" id="product-image" />
+          <div id="preview-img" style="margin-top:8px;"></div>
+        </label>
+        <label>Mô tả sản phẩm
+          <textarea id="product-desc" rows="3"></textarea>
+        </label>
+        <button type="submit" class="btn" id="add-product">Thêm sản phẩm</button>
+        <input type="hidden" id="product-id" />
+      </form>
+      <table class="admin-table" id="admin-table">
+        <thead>
+          <tr>
+            <th>Ảnh</th>
+            <th>Tên</th>
+            <th>Giá</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sản phẩm sẽ render ở đây -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+const API = 'http://localhost:3000/products';
+
+// Xử lý chọn file ảnh và chuyển sang base64
+document.getElementById('product-image-file').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    document.getElementById('product-image').value = evt.target.result;
+    document.getElementById('preview-img').innerHTML = `<img src="${evt.target.result}" style="max-width:80px;max-height:80px;border-radius:8px;">`;
+  };
+  reader.readAsDataURL(file);
+});
+
+    async function fetchProducts() {
+      const res = await fetch(API);
+      return await res.json();
+    }
+    async function addProduct(e) {
+      e.preventDefault();
+      const name = document.getElementById('product-name').value.trim();
+      const price = Number(document.getElementById('product-price').value);
+      const image = document.getElementById('product-image').value.trim();
+      const desc = document.getElementById('product-desc').value.trim();
+      const id = document.getElementById('product-id').value;
+      if (!name || !image || price <= 0) return alert('Nhập đủ thông tin!');
+      const data = { name, price, image, desc };
+      if (id) {
+        // Update
+        await fetch(`${API}/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...data, id })
+        });
+      } else {
+        // Add
+        await fetch(API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      }
+      renderTable();
+      e.target.reset();
+      document.getElementById('product-id').value = '';
+      document.getElementById('add-product').textContent = 'Thêm sản phẩm';
+      document.getElementById('preview-img').innerHTML = '';
+    }
+    async function renderTable() {
+      const tbody = document.querySelector('#admin-table tbody');
+      const products = await fetchProducts();
+      tbody.innerHTML = products.map(p => `
+        <tr>
+          <td><img src="${p.image}" alt="${p.name}"></td>
+          <td>${p.name}</td>
+          <td>${Number(p.price).toLocaleString('vi-VN')}₫</td>
+          <td class="admin-actions">
+            <button class="btn" data-edit="${p.id}">Sửa</button>
+            <button class="btn ghost" data-delete="${p.id}">Xóa</button>
+          </td>
+        </tr>
+      `).join('');
+      // Attach edit/delete events
+      tbody.querySelectorAll('button[data-edit]').forEach(btn => {
+        btn.onclick = () => editProduct(btn.getAttribute('data-edit'));
+      });
+      tbody.querySelectorAll('button[data-delete]').forEach(btn => {
+        btn.onclick = () => deleteProduct(btn.getAttribute('data-delete'));
+      });
+    }
+    async function editProduct(id) {
+      const res = await fetch(`${API}/${id}`);
+      const p = await res.json();
+      document.getElementById('product-name').value = p.name;
+      document.getElementById('product-price').value = p.price;
+      document.getElementById('product-image').value = p.image;
+      document.getElementById('product-desc').value = p.desc || '';
+      document.getElementById('product-id').value = p.id;
+      document.getElementById('add-product').textContent = 'Cập nhật';
+      document.getElementById('preview-img').innerHTML = p.image ? `<img src="${p.image}" style="max-width:80px;max-height:80px;border-radius:8px;">` : '';
+    }
+    async function deleteProduct(id) {
+      if (!confirm('Xóa sản phẩm này?')) return;
+      await fetch(`${API}/${id}`, { method: 'DELETE' });
+      renderTable();
+    }
+    document.getElementById('admin-form').onsubmit = addProduct;
+    renderTable();
+  </script>
+</body>
+</html>

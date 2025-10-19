@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Giới thiệu - LEO Beauty</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .about-section {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      background: linear-gradient(120deg, #e6f2ea 60%, #fff 100%);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #e6f2ea;
+      padding: 48px 32px;
+      margin-top: 32px;
+      margin-bottom: 32px;
+    }
+    .about-img {
+      flex: 0 0 280px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px #b2e2d3;
+      border: 6px solid #fff;
+      background: #e6f2ea;
+    }
+    .about-img img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .about-content {
+      flex: 1;
+    }
+    .about-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #064124;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .about-content p {
+      font-size: 1.15rem;
+      margin-bottom: 18px;
+      color: #063f2a;
+    }
+    .about-values {
+      margin-top: 24px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .about-value {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #e6f2ea;
+      padding: 18px 16px;
+      flex: 1;
+      min-width: 180px;
+      text-align: center;
+    }
+    .about-value h4 {
+      color: #1bb184;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .about-team {
+      margin-top: 32px;
+      text-align: center;
+    }
+    .about-team img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 0 12px;
+      box-shadow: 0 2px 8px #b2e2d3;
+      border: 3px solid #fff;
+      background: #e6f2ea;
+    }
+    @media (max-width: 900px) {
+      .about-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 12px;
+      }
+      .about-img img {
+        height: 180px;
+      }
+      .about-values {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header chuẩn cho mọi trang -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo-search">
+        <a class="logo" href="index.html">🌿 LEO Beauty</a>
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Tìm sản phẩm theo tên..." />
+          <button id="search-btn">Tìm kiếm</button>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="products.html">Sản phẩm</a>
+        <a href="about.html">Giới thiệu</a>
+        <a href="contact.html">Liên hệ</a>
+        <a class="cart-link" href="cart.html">Giỏ (<span id="cart-count">0</span>)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="about-section">
+      <div class="about-img">
+        <img src="image/avatar.jpg" alt="LEO Beauty Team">
+      </div>
+      <div class="about-content">
+        <h2>Về LEO Beauty</h2>
+        <p><strong>Slogan:</strong> "Tôn vinh vẻ đẹp tự nhiên, an toàn cho mọi làn da."</p>
+        <p>LEO Beauty sinh ra từ niềm yêu thích vẻ đẹp tự nhiên. Chúng tôi cam kết chọn lựa nguyên liệu an toàn, thân thiện với da, và thiết kế sản phẩm tinh tế phù hợp với mọi loại da.</p>
+        <p>Sứ mệnh của chúng tôi là giúp bạn tự tin hơn mỗi ngày — bằng các sản phẩm chăm sóc da nhẹ nhàng và hiệu quả.</p>
+        <div class="about-values">
+          <div class="about-value">
+            <h4>100% Thành phần thiên nhiên</h4>
+            <p>Không chứa hóa chất độc hại, an toàn cho mọi loại da.</p>
+          </div>
+          <div class="about-value">
+            <h4>Đội ngũ chuyên gia</h4>
+            <p>Được tư vấn bởi các chuyên gia da liễu hàng đầu.</p>
+          </div>
+          <div class="about-value">
+            <h4>Cam kết chất lượng</h4>
+            <p>Kiểm định nghiêm ngặt, bảo hành đổi trả dễ dàng.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="about-team">
+      <h3>Đội ngũ sáng lập</h3>
+      <img src="image/avatar.jpg" alt="Founder 1">
+      <img src="image/a1.jpg" alt="Founder 2">
+      <img src="image/a2.jpg" alt="Founder 3">
+      <p style="margin-top:12px;color:#064124;font-size:1.08rem;">Chúng tôi luôn nỗ lực mang đến sản phẩm tốt nhất cho bạn!</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 LEO Beauty</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

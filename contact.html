@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Liên hệ - LEO Beauty</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .contact-main {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      margin-top: 32px;
+      margin-bottom: 32px;
+    }
+    .contact-form {
+      flex: 1;
+      background: #f8fdfb;
+      padding: 32px 24px;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px #e6f2ea;
+      min-width: 320px;
+    }
+    .contact-form label {
+      display: block;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border-radius: 6px;
+      border: 1px solid #e6f2ea;
+      background: #fff;
+      font-size: 1rem;
+    }
+    .contact-form button {
+      margin-top: 18px;
+      width: 100%;
+    }
+    .contact-form h3 {
+      margin-bottom: 18px;
+      color: #064124;
+    }
+    .muted {
+      color: #888;
+      font-size: 0.98rem;
+      margin-top: 12px;
+    }
+    .chat-assistant {
+      flex: 0 0 340px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px #e6f2ea;
+      padding: 24px 18px;
+      min-width: 260px;
+      position: sticky;
+      top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .chat-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: #1bb184;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .chat-select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #e6f2ea;
+      background: #f8fdfb;
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+    .chat-response {
+      background: #e6f2ea;
+      border-radius: 8px;
+      padding: 12px;
+      color: #064124;
+      min-height: 48px;
+      font-size: 1.05rem;
+      box-shadow: 0 1px 6px #b2e2d3;
+    }
+    @media (max-width: 900px) {
+      .contact-main {
+        flex-direction: column;
+        gap: 18px;
+      }
+      .chat-assistant {
+        width: 100%;
+        min-width: unset;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header chuẩn cho mọi trang -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo-search">
+      <a class="logo" href="index.html">🌿 LEO Beauty</a>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Tìm sản phẩm theo tên..." />
+        <button id="search-btn">Tìm kiếm</button>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html">Trang chủ</a>
+      <a href="products.html">Sản phẩm</a>
+      <a href="about.html">Giới thiệu</a>
+      <a href="contact.html">Liên hệ</a>
+      <a class="cart-link" href="cart.html">Giỏ (<span id="cart-count">0</span>)</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="container">
+    <h2 class="page-title">Liên hệ với chúng tôi</h2>
+    <div class="contact-main">
+      <form id="contact-form" class="contact-form" onsubmit="return false;">
+        <h3>Gửi tin nhắn cho LEO Beauty</h3>
+        <label>
+          Họ và tên
+          <input type="text" id="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" id="email" required />
+        </label>
+        <label>
+          Tin nhắn
+          <textarea id="message" rows="5" required></textarea>
+        </label>
+        <button class="btn" id="send-message">Gửi</button>
+        <p class="muted">Hoặc gọi: 0123 456 789</p>
+      </form>
+      <aside class="chat-assistant">
+        <div class="chat-title">Trợ lý LEO Beauty</div>
+        <select class="chat-select" id="chat-question">
+          <option value="">Chọn câu hỏi...</option>
+          <option value="gioithieu">LEO Beauty là gì?</option>
+          <option value="sanpham">Các sản phẩm nổi bật?</option>
+          <option value="giaohang">Chính sách giao hàng?</option>
+          <option value="baohanh">Bảo hành & đổi trả?</option>
+          <option value="lienhe">Cách liên hệ tư vấn?</option>
+        </select>
+        <div class="chat-response" id="chat-response">Xin chào! Bạn hãy chọn câu hỏi để nhận hỗ trợ nhé.</div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© LEO Pastel Beauty</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Trợ lý ảo trả lời tự động
+    const chatSelect = document.getElementById('chat-question');
+    const chatResponse = document.getElementById('chat-response');
+    chatSelect.addEventListener('change', function() {
+      switch (chatSelect.value) {
+        case 'gioithieu':
+          chatResponse.textContent = 'LEO Beauty là thương hiệu mỹ phẩm thiên nhiên, cam kết an toàn cho mọi làn da và tôn vinh vẻ đẹp tự nhiên.';
+          break;
+        case 'sanpham':
+          chatResponse.textContent = 'Các sản phẩm nổi bật: Serum dưỡng da, kem dưỡng ẩm, son môi thiên nhiên, mặt nạ Vital, tẩy trang dịu nhẹ.';
+          break;
+        case 'giaohang':
+          chatResponse.textContent = 'Miễn phí giao hàng cho đơn trên 500.000đ trong nội thành. Giao hàng toàn quốc từ 2-5 ngày làm việc.';
+          break;
+        case 'baohanh':
+          chatResponse.textContent = 'Sản phẩm được bảo hành đổi trả trong 7 ngày nếu có lỗi từ nhà sản xuất hoặc không phù hợp với da.';
+          break;
+        case 'lienhe':
+          chatResponse.textContent = 'Bạn có thể liên hệ qua hotline 0123 456 789 hoặc gửi tin nhắn qua form bên cạnh. Đội ngũ tư vấn luôn sẵn sàng!';
+          break;
+        default:
+          chatResponse.textContent = 'Xin chào! Bạn hãy chọn câu hỏi để nhận hỗ trợ nhé.';
+      }
+    });
+  </script>
+</body>
+</html>

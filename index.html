@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LEO Beauty - Trang chủ</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Thêm Google Fonts cho giao diện sang trọng -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8fdfb 0%, #e6f2ea 100%);
+      color: #063f2a;
+      margin: 0;
+    }
+    .site-header {
+      background: #fff;
+      box-shadow: 0 2px 12px #e6f2ea;
+      padding: 0;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      gap: 24px;
+    }
+    .logo-search {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #064124;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .search-bar input {
+      width: 220px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid #e6f2ea;
+      font-size: 1.08rem;
+      background: #fff;
+      transition: box-shadow 0.2s;
+    }
+    .search-bar input:focus {
+      box-shadow: 0 2px 8px #b2e2d3;
+      outline: none;
+    }
+    .search-bar button {
+      background: linear-gradient(90deg, #1bb184 0%, #064124 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 1.08rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #b2e2d3;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .search-bar button:hover {
+      background: linear-gradient(90deg, #064124 0%, #1bb184 100%);
+      box-shadow: 0 4px 16px #b2e2d3;
+    }
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .main-nav a {
+      color: #064124;
+      text-decoration: none;
+      margin: 0 8px;
+      font-weight: 500;
+      transition: color 0.2s;
+      font-size: 1.08rem;
+    }
+    .main-nav a:hover {
+      color: #1bb184;
+      text-decoration: underline;
+    }
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(120deg, #e6f2ea 60%, #fff 100%);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #e6f2ea;
+      padding: 48px 32px;
+      margin-top: 32px;
+      margin-bottom: 18px;
+      gap: 32px;
+    }
+    .hero-text {
+      flex: 1;
+    }
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #064124;
+      margin-bottom: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .hero-text p {
+      font-size: 1.15rem;
+      margin-bottom: 18px;
+      color: #063f2a;
+    }
+    .hero-image img {
+      width: 320px;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 4px 24px #b2e2d3;
+      border: 6px solid #fff;
+      background: #e6f2ea;
+    }
+    .category-bar {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #e6f2ea;
+      padding: 18px 0;
+      margin-bottom: 32px;
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+    .category-bar .category-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .category-bar .category-title {
+      color: #1bb184;
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .category-bar .category-list {
+      color: #064124;
+      font-size: 1.05rem;
+      opacity: 0.85;
+    }
+    .showcase-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #064124;
+      margin: 32px 0 18px 0;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .showcase-products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    .showcase-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px #e6f2ea;
+      padding: 24px 18px 32px 18px;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .showcase-card:hover {
+      box-shadow: 0 6px 32px #b2e2d3;
+      transform: translateY(-4px) scale(1.03);
+    }
+    .showcase-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px #b2e2d3;
+      border: 4px solid #e6f2ea;
+      background: #f8fdfb;
+      cursor: pointer;
+    }
+    .showcase-card h3 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.15rem;
+      color: #064124;
+      font-weight: 700;
+      margin-bottom: 8px;
+      margin-top: 0;
+    }
+    .showcase-card .price {
+      color: #1bb184;
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .btn.detail-link {
+      background: linear-gradient(90deg, #1bb184 0%, #064124 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #b2e2d3;
+      transition: background 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      margin-top: auto;
+      display: inline-block;
+    }
+    .btn.detail-link:hover {
+      background: linear-gradient(90deg, #064124 0%, #1bb184 100%);
+      box-shadow: 0 4px 16px #b2e2d3;
+    }
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 12px;
+      }
+      .hero-image img {
+        width: 220px;
+        height: 220px;
+        margin-top: 18px;
+      }
+      .features {
+        flex-direction: column;
+        gap: 18px;
+      }
+      .category-bar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 0;
+      }
+      .showcase-products {
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .showcase-card img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+    @media (max-width: 600px) {
+      .showcase-products {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header chuẩn cho mọi trang -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo-search">
+      <a class="logo" href="index.html">🌿 LEO Beauty</a>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Tìm sản phẩm theo tên..." />
+        <button id="search-btn">Tìm kiếm</button>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html">Trang chủ</a>
+      <a href="products.html">Sản phẩm</a>
+      <a href="about.html">Giới thiệu</a>
+      <a href="contact.html">Liên hệ</a>
+      <a class="cart-link" href="cart.html">Giỏ (<span id="cart-count">0</span>)</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Chăm sóc da tinh tế với sản phẩm từ thiên nhiên</h1>
+        <p>Chọn sản phẩm lành tính, thiết kế nhẹ nhàng — vẻ đẹp tự nhiên mỗi ngày.</p>
+        <p><a class="btn" href="products.html">Khám phá sản phẩm</a></p>
+      </div>
+      <div class="hero-image">
+       <img src="image/avatar.jpg" alt="Avatar">
+      </div>
+    </section>
+
+    <!-- Sản phẩm trưng bày -->
+    <div class="showcase-title">Sản phẩm nổi bật</div>
+    <div class="showcase-products" id="showcase-products">
+      <div class="showcase-card" data-name="Serum Dưỡng Da">
+        <img src="image/a1.jpg" alt="Serum">
+        <h3>Serum Dưỡng Da</h3>
+        <p class="price">250.000₫</p>
+        <a href="products.html" class="btn">Xem chi tiết</a>
+      </div>
+      <div class="showcase-card" data-name="Kem Dưỡng Ẩm">
+        <img src="image/a2.jpg" alt="Kem Dưỡng">
+        <h3>Kem Dưỡng Ẩm</h3>
+        <p class="price">320.000₫</p>
+        <a href="products.html" class="btn">Xem chi tiết</a>
+      </div>
+      <div class="showcase-card" data-name="Son Môi Thiên Nhiên">
+        <img src="image/a3.jpg" alt="Son">
+        <h3>Son Môi Thiên Nhiên</h3>
+        <p class="price">180.000₫</p>
+        <a href="products.html" class="btn">Xem chi tiết</a>
+      </div>
+      <div class="showcase-card" data-name="Mặt Nạ Vital">
+        <img src="image/a4.jpg" alt="Mặt Nạ">
+        <h3>Mặt Nạ Vital</h3>
+        <p class="price">120.000₫</p>
+        <a href="products.html" class="btn">Xem chi tiết</a>
+      </div>
+      <div class="showcase-card" data-name="Tẩy Trang Dịu Nhẹ">
+        <img src="image/a5.jpg" alt="Tẩy Trang">
+        <h3>Tẩy Trang Dịu Nhẹ</h3>
+        <p class="price">150.000₫</p>
+        <a href="products.html" class="btn">Xem chi tiết</a>
+      </div>
+    </div>
+  </main>
+
+  <footer style="background-color: #ace2b1; color: #fff; padding: 40px 0; font-family: 'Arial', sans-serif;">
+  <div class="container" style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
+    
+    <!-- Cột 1: Giới thiệu -->
+    <div style="flex: 1 1 250px; margin: 10px;">
+      <br>
+      <h3 style="color: #f8b400;">LEO Beauty</h3>
+      <br>
+      <p>LEO Beauty mang đến các sản phẩm mỹ phẩm thiên nhiên, an toàn và lành tính cho mọi loại da. 
+      Tự tin tỏa sáng cùng vẻ đẹp tự nhiên của bạn!</p>
+    </div>
+    
+    <!-- Cột 2: Liên kết nhanh -->
+    <div style="flex: 1 1 200px; margin: 10px;">
+      <h4 style="color: #f8b400;">Liên kết nhanh</h4>
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li><a href="#" style="color: #fff; text-decoration: none;">Trang chủ</a></li>
+        <li><a href="#" style="color: #fff; text-decoration: none;">Giới thiệu</a></li>
+        <li><a href="#" style="color: #fff; text-decoration: none;">Sản phẩm</a></li>
+        <li><a href="#" style="color: #fff; text-decoration: none;">Liên hệ</a></li>
+      </ul>
+    </div>
+    
+    <!-- Cột 3: Liên hệ -->
+    <div style="flex: 1 1 250px; margin: 10px;">
+      <h4 style="color: #f8b400;">Liên hệ</h4>
+      <p>📍 123 Đường Hoa Sen, Q.1, TP.HCM</p>
+      <p>📞 0123 456 789</p>
+      <p>✉️ leobeauty@gmail.com</p>
+    </div>
+    
+    <!-- Cột 4: Mạng xã hội -->
+    <div style="flex: 1 1 200px; margin: 10px;">
+      <h4 style="color: #f8b400;">Kết nối với chúng tôi</h4>
+      <p>
+        <a href="#" style="color: #fff; text-decoration: none; margin-right: 10px;">🌐 Facebook</a><br>
+        <a href="#" style="color: #fff; text-decoration: none; margin-right: 10px;">📸 Instagram</a><br>
+        <a href="#" style="color: #fff; text-decoration: none;">🎥 YouTube</a>
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 30px; border-top: 1px solid #444; padding-top: 15px;">
+    <p>© 2025 LEO Beauty | Thiên nhiên – Tự nhiên – Toả sáng 🌿</p>
+  </div>
+</footer>
+
+
+  <script src="script.js"></script>
+  <script>
+    // Hiển thị sản phẩm nổi bật từ API
+    document.addEventListener('DOMContentLoaded', async () => {
+      const grid = document.getElementById('showcase-products');
+      const res = await fetch('http://localhost:3000/products');
+      const products = await res.json();
+      grid.innerHTML = products.map(p => `
+        <div class="showcase-card">
+          <img src="${p.image || 'image/a1.jpg'}" alt="${p.name}" style="cursor:pointer;" onclick="location.href='product-detail.html?id=${p.id}'">
+          <h3>${p.name}</h3>
+          <p class="price">${Number(p.price).toLocaleString('vi-VN')}₫</p>
+          <a class="btn detail-link" href="product-detail.html?id=${p.id}">Xem chi tiết sản phẩm</a>
+        </div>
+      `).join('');
+    });
+
+    // Tìm kiếm sản phẩm nổi bật theo tên
+    document.getElementById('search-btn').onclick = function() {
+      const val = document.getElementById('search-input').value.trim().toLowerCase();
+      document.querySelectorAll('.showcase-card').forEach(card => {
+        const name = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = (!val || name.includes(val)) ? 'flex' : 'none';
+      });
+    };
+    // Enter cũng tìm kiếm
+    document.getElementById('search-input').onkeydown = function(e) {
+      if (e.key === 'Enter') document.getElementById('search-btn').click();
+    };
+  </script>
+</body>
+</html>

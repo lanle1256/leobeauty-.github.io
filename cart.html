@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Giỏ hàng - LEO Beauty</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8fdfb 0%, #e6f2ea 100%);
+      color: #063f2a;
+      margin: 0;
+    }
+    .site-header {
+      background: #fff;
+      box-shadow: 0 2px 12px #e6f2ea;
+      padding: 0;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #064124;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+    .main-nav a {
+      color: #064124;
+      text-decoration: none;
+      margin: 0 16px;
+      font-weight: 500;
+      transition: color 0.2s;
+      font-size: 1.08rem;
+    }
+    .main-nav a:hover {
+      color: #1bb184;
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #064124;
+      margin: 32px 0 24px 0;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    #cart-container {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px #e6f2ea;
+      padding: 32px 18px;
+      margin-bottom: 32px;
+      min-height: 120px;
+    }
+    .cart-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+    }
+    .cart-table th, .cart-table td {
+      padding: 12px 8px;
+      text-align: center;
+      border-bottom: 1px solid #e6f2ea;
+    }
+    .cart-table th {
+      background: #f8fdfb;
+      color: #064124;
+      font-size: 1.08rem;
+      font-weight: 700;
+    }
+    .cart-table td {
+      font-size: 1.05rem;
+      color: #063f2a;
+    }
+    .cart-table img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #b2e2d3;
+      border: 2px solid #e6f2ea;
+      background: #f8fdfb;
+    }
+    .order-form {
+      margin-top: 32px;
+      max-width: 500px;
+      background: #f8fdfb;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #e6f2ea;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .order-form h3 {
+      margin-bottom: 18px;
+      color: #064124;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .order-form label {
+      display: block;
+      margin-bottom: 14px;
+      font-weight: 500;
+      color: #063f2a;
+    }
+    .order-form input,
+    .order-form select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border-radius: 6px;
+      border: 1px solid #e6f2ea;
+      background: #fff;
+      font-size: 1rem;
+    }
+    .order-form button {
+      margin-top: 18px;
+      width: 100%;
+      background: linear-gradient(90deg, #1bb184 0%, #064124 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #b2e2d3;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .order-form button:hover {
+      background: linear-gradient(90deg, #064124 0%, #1bb184 100%);
+      box-shadow: 0 4px 16px #b2e2d3;
+    }
+    .cart-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .btn.ghost {
+      background: #fff;
+      color: #1bb184;
+      border: 2px solid #1bb184;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: 10px 24px;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    .btn.ghost:hover {
+      background: #e6f2ea;
+      color: #064124;
+    }
+    .site-footer {
+      background: #e6f2ea;
+      color: #064124;
+      text-align: center;
+      padding: 24px 0;
+      margin-top: 48px;
+      font-size: 1.05rem;
+      border-top: 1px solid #b2e2d3;
+    }
+    @media (max-width: 900px) {
+      .container {
+        max-width: 100%;
+        padding: 0 8px;
+      }
+      #cart-container, .order-form {
+        padding: 18px 6px;
+      }
+      .order-form {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header chuẩn cho mọi trang -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo-search">
+      <a class="logo" href="index.html">🌿 LEO Beauty</a>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Tìm sản phẩm theo tên..." />
+        <button id="search-btn">Tìm kiếm</button>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html">Trang chủ</a>
+      <a href="products.html">Sản phẩm</a>
+      <a href="about.html">Giới thiệu</a>
+      <a href="contact.html">Liên hệ</a>
+      <a class="cart-link" href="cart.html">Giỏ (<span id="cart-count">0</span>)</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="container">
+    <h2 class="page-title">Giỏ hàng của bạn</h2>
+
+    <div id="cart-container">
+      <!-- Nội dung giỏ hàng sẽ được render bởi JS -->
+    </div>
+
+    <form id="order-form" class="order-form">
+      <h3>Thông tin đặt hàng</h3>
+      <label>Họ và tên
+        <input type="text" id="buyer-name" required />
+      </label>
+      <label>Email
+        <input type="email" id="buyer-email" required />
+      </label>
+      <label>Số điện thoại
+        <input type="tel" id="buyer-phone" required />
+      </label>
+      <label>Địa chỉ nhận hàng
+        <input type="text" id="buyer-address" required />
+      </label>
+      <label>Phương thức thanh toán
+        <select id="buyer-payment" required>
+          <option value="">--Chọn--</option>
+          <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+          <option value="bank">Chuyển khoản ngân hàng</option>
+        </select>
+      </label>
+      <button type="submit" class="btn" id="checkout">Đặt hàng</button>
+    </form>
+
+    <div class="cart-actions">
+      <button id="clear-cart" class="btn ghost">Xoá tất cả</button>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 LEO Beauty</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
